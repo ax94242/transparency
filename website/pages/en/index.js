@@ -64,6 +64,9 @@ class HomeSplash extends React.Component {
         <div className="inner">
           <ProjectTitle tagline={siteConfig.tagline} title={siteConfig.title} />
           <PromoSection>
+          
+          
+            <Button href={docUrl('doc2.html')}>Click here to get Update</Button>
             
           </PromoSection>
         </div>
@@ -100,20 +103,6 @@ class Index extends React.Component {
       </Block>
     );
 
-    const FeatureCallout = () => (
-      <div
-        className="productShowcaseSection paddingBottom"
-        style={{textAlign: 'center'}}>
-        <h2>July 2020 Update</h2>
-        <h3>United Kingdom</h3>
-        <p>In April, we notified you that the Association of the British Pharmaceutical Industry (ABPI) had released guidance that 2019 data would be submitted and disclosed in the aggregate in an effort to ease the burden on healthcare professionals to review the data during the initial stages of the COVID-19 pandemic.</p>
-        <p>ABPI has published the 2019 aggregated data, but is now requesting companies "disaggregate" their data and disclose at the individual level. Reports with disaggregated 2019 transfers of value are to be submitted by 31 July 2020. Disaggregated data refers to the individual disclosures for recipients who provided consent for standard disclosure.</p>
-        <p>The submission portal will be open for companies to submit from Monday 20 July to Friday 31 July at 14:00 GMT.</p>
-        <p>ABPI also asked companies to confirm that the already published 2019 aggregate data is up to date. The aggregate data will remain published until the official disaggregated data is made available to the public.</p>
-      </div>
-    );
-    
-
     const Showcase = () => {
       if ((siteConfig.users || []).length === 0) {
         return null;
@@ -128,17 +117,19 @@ class Index extends React.Component {
         ));
 
       const pageUrl = (page) =>
-        baseUrl + (language ? `${language}/` : '') + page;
-
+        siteConfig.baseUrl + 'docs/';
+        
+     
       return (
         <div className="productShowcaseSection paddingBottom">
           <h2>Who is Using This?</h2>
           <p>This project is used by all these people</p>
-          <div className="logos">{showcase}</div>
-          <div className="more-users">
-            <a className="button" href={pageUrl('users.html')}>
-              More {siteConfig.title} Users
-            </a>
+        
+          <div id="doc2">
+          <script>      
+          document.getElementById("doc2").innerHTML = responseHTML.innerHTML;
+          </script>  
+
           </div>
         </div>
       );
@@ -149,7 +140,6 @@ class Index extends React.Component {
         <HomeSplash siteConfig={siteConfig} language={language} />
         <div className="mainContainer">
           <Description />
-          <FeatureCallout />
           <Showcase />
         </div>
       </div>
